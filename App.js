@@ -11,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator  screenOptions={{headerShown: false}}>
         <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen} />
-        <Stack.Screen name="OnBoardingScreen" component={LoginScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

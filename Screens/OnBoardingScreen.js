@@ -3,9 +3,11 @@ import { FlatList, Image, SafeAreaView, StatusBar, Text, TouchableOpacity, View,
 import OnBoardingScreenElements from "../OnBoardingScreenElements"
 import OnBoardingScreenItem from "../Components/OnBoardingScreenItem"
 import Paginator from "../Components/Paginator"
+import { useNavigation } from "@react-navigation/native"
 
 const OnBoardingScreen = () => {
     const[currentIndex,setCurrentIndex]=useState(0)
+    const navigation=useNavigation()
     const {width}=useWindowDimensions()
     const scrollx=useRef(new Animated.Value(0)).current
     const onBoardRef=useRef(null)
@@ -41,9 +43,9 @@ const OnBoardingScreen = () => {
     </View>
     {currentIndex==2?
     <View style={[styles.continueContainer,{width:width}]}>
-    <TouchableOpacity style={styles.continueBtn}><Text style={{color:"white"}}>Continue to login</Text></TouchableOpacity>
+    <TouchableOpacity onPress={()=>navigation.navigate("LoginScreen")} style={styles.continueBtn}><Text style={{color:"white"}}>Continue to login</Text></TouchableOpacity>
     </View>:<View style={[styles.skipnextContainer,{width:width}]}>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>navigation.navigate("LoginScreen")}>
     <Text style={styles.skipText}>Skip for later</Text>
     </TouchableOpacity>
     <TouchableOpacity onPress={scrollToNextItem} style={styles.nextBtn}><Text style={{color:"white"}}>Next</Text></TouchableOpacity>

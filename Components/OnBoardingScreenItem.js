@@ -1,7 +1,8 @@
 import React from "react"
-import {Text,View,Image, TouchableOpacity,useWindowDimensions,StyleSheet} from "react-native"
+import {Text,View,Image,useWindowDimensions,StyleSheet} from "react-native"
 const OnBoardingScreen=({item})=>{
     const {width}=useWindowDimensions()
+   
 return(
 <View style={[styles.container,{width}]}>
    <Image source={item.image} style={[styles.image,{width,resizeMode:"contain"}]}></Image>
@@ -20,6 +21,9 @@ const styles=StyleSheet.create({
  },
  image:{
     flex:0.7,
+    height:330,
+    width:320,
+    marginHorizontal:20,
     justifyContent:"center"
  },
  title:{
