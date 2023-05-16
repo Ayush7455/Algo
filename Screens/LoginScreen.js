@@ -1,9 +1,11 @@
 import React from "react"
-import {SafeAreaView, StatusBar, Text,View,Image,StyleSheet} from "react-native"
+import {SafeAreaView, StatusBar, Text,View,Image,StyleSheet, TouchableOpacity} from "react-native"
 import GoogleImg from "../assets/Images/Google.png"
 import TaskManagement from "../assets/Images/TaskManagement.png"
-const LoginScreen=()=>{
+import { useNavigation } from "@react-navigation/native"
 
+const LoginScreen=()=>{
+    const navigation=useNavigation()
     return (
         <SafeAreaView style={{flex:1,backgroundColor:"white"}}>
             <StatusBar/>
@@ -12,10 +14,10 @@ const LoginScreen=()=>{
         <Image source={TaskManagement} style={styles.image}></Image>
             </View>
             <View style={styles.bottomContainer}>
-                <View style={styles.subBottomContainer}>
+                <TouchableOpacity onPress={()=>navigation.navigate("HomeScreen")} style={styles.subBottomContainer}>
                     <Image source={GoogleImg} resizeMode="contain" style={styles.subBottomContainerImage}></Image>
                     <Text style={{fontWeight:600,fontSize:16}}>Continue with Google</Text>
-                </View>
+                </TouchableOpacity>
                 <Text style={styles.subBottomContainerText1}>By continuing, you agree to our</Text>
                 <Text style={styles.subBottomContainerText2}>Terms & conditions and Privacy Policy</Text>
             </View>
