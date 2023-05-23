@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "998958224305",
+    "project_id": "ojinn-32de1",
+    "storage_bucket": "ojinn-32de1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998958224305:android:538210b1685092d1b22390",
+        "android_client_info": {
+          "package_name": "com.ayush.Ojinn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998958224305-8n2hsp4dmmj8bld5l8ru7brispg3tt37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ayush.Ojinn",
+            "certificate_hash": "0175ab524d6c7fdcadaa81f310d0052104d9ad87"
+          }
+        },
+        {
+          "client_id": "998958224305-lgva7mbak2h5gavn60eu1r0as1a44gcc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ayush.Ojinn",
+            "certificate_hash": "885ecd14b6db2ed00c55422eb1eef3b65172bc41"
+          }
+        },
+        {
+          "client_id": "998958224305-h17qbkeouvm0po5uoocofnsita4kfbuq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR33YjF1zgHXKGsLPJAMyX0FK1fUPA9JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998958224305-h17qbkeouvm0po5uoocofnsita4kfbuq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

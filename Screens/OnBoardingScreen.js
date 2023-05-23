@@ -4,6 +4,7 @@ import OnBoardingScreenElements from "../OnBoardingScreenElements"
 import OnBoardingScreenItem from "../Components/OnBoardingScreenItem"
 import Paginator from "../Components/Paginator"
 import { useNavigation } from "@react-navigation/native"
+import OnBoardingScreenStyles from "../Styles/OnBoardingScreenStyles"
 
 const OnBoardingScreen = () => {
     const[currentIndex,setCurrentIndex]=useState(0)
@@ -42,13 +43,13 @@ const OnBoardingScreen = () => {
     <Paginator data={OnBoardingScreenElements} scrollx={scrollx}/>
     </View>
     {currentIndex==2?
-    <View style={[styles.continueContainer,{width:width}]}>
-    <TouchableOpacity onPress={()=>navigation.navigate("LoginScreen")} style={styles.continueBtn}><Text style={{color:"white"}}>Continue to login</Text></TouchableOpacity>
-    </View>:<View style={[styles.skipnextContainer,{width:width}]}>
-    <TouchableOpacity onPress={()=>navigation.navigate("LoginScreen")}>
-    <Text style={styles.skipText}>Skip for later</Text>
+    <View style={[OnBoardingScreenStyles.continueContainer,{width:width}]}>
+    <TouchableOpacity onPress={()=>navigation.navigate("LoginScreen")} style={OnBoardingScreenStyles.continueBtn}><Text style={{color:"white"}}>Continue to login</Text></TouchableOpacity>
+    </View>:<View style={[OnBoardingScreenStyles.skipnextContainer,{width:width}]}>
+    <TouchableOpacity onPress={()=>navigation.replace("LoginScreen")}>
+    <Text style={OnBoardingScreenStyles.skipText}>Skip for later</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={scrollToNextItem} style={styles.nextBtn}><Text style={{color:"white"}}>Next</Text></TouchableOpacity>
+    <TouchableOpacity onPress={scrollToNextItem} style={OnBoardingScreenStyles.nextBtn}><Text style={{color:"white"}}>Next</Text></TouchableOpacity>
     </View>
 }
    </SafeAreaView>
@@ -56,42 +57,5 @@ const OnBoardingScreen = () => {
    
   )
 }
-const styles=StyleSheet.create({
-    skipnextContainer:{
-        paddingBottom:"10%",
-        paddingHorizontal:26,
-        flexDirection:"row",
-        alignItems:"center",
-        justifyContent:"space-between"
-    },
-    continueContainer:{
-        paddingBottom:"10%",
-        paddingHorizontal:26,
-        alignItems:"center",
-    },
-    skipText:{
-        color:"#808080",
-        fontSize:14
-    },
-    nextBtn:{
-        height:40,
-        width:96,
-        backgroundColor:"#3584EF",
-        borderRadius:10,
-        alignItems:"center",
-        justifyContent:"center"
-    },
-    continueBtn:{
-        height:40,
-        width:320,
-        backgroundColor:"#3584EF",
-        borderRadius:10,
-        alignItems:"center",
-        justifyContent:"center"
-    }
-
-
-
-})
 
 export default OnBoardingScreen
