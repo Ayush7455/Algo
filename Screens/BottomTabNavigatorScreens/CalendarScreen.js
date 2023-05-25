@@ -9,9 +9,11 @@ import Task from '../../Components/Task';
 import WorkingHours from '../../Components/WorkingHours';
 import Hours from '../../Hours';
 import CalendarScreenStyles from '../../Styles/CalendarScreenStyles';
+import { Entypo } from '@expo/vector-icons';
 
 const useKeyboard=()=>{
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+ 
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -37,13 +39,17 @@ const useKeyboard=()=>{
   return isKeyboardVisible;
 }
 export default function App() {
+  const[syncVisible,setSyncVisible]=useState(false)
   const isKeyboardOpen = useKeyboard();
   const [selectedDate, setSelectedDate] = useState('');
   const [expand, setExpand] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
+  const[autoScheduleVisible,setAutoScheduleVisible]=useState(false)
   const [category,setCategory]=useState("Categories")
   const [showModal, setShowModal] = useState(false);
+  const[overlapAlertVisible,setOverlapAlertVisible]=useState(false)
+  const[overlapErrorVisible,setOverlapErrorVisible]=useState(false)
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
@@ -58,6 +64,7 @@ export default function App() {
     }
   };
   const addTask = () => {
+    setOverlapAlertVisible(true)
     if (title !== '') {
       setTasks([...tasks, { date: selectedDate, task: title }]);
       setTitle('');
@@ -69,7 +76,18 @@ export default function App() {
       <SafeAreaView style={CalendarScreenStyles.container}>
         <StatusBar barStyle="dark-content" backgroundColor="white" />
         <View>
+        <Menu w="100" trigger={triggerProps => {
+                return (
+                    <Pressable accessibilityLabel="More options menu" {...triggerProps} style={{alignSelf:"flex-end",width:40,marginBottom:10}}>
+                      <Entypo name="dots-three-vertical" size={18} color="#787777" style={{ marginTop: 15 }} />
+                    </Pressable>
+
+                )
+              }}>
+                <Menu.Item onPress={()=>setSyncVisible(true)}>Sync</Menu.Item>
+              </Menu>
           <Calendar
+          
             onDayPress={handleDayPress}
             markedDates={{
               [selectedDate]: {
@@ -165,8 +183,126 @@ export default function App() {
           </Modal.Content>
 
         </Modal>
+
+        <Modal isOpen={syncVisible} onClose={() => setSyncVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>
+          <Modal.Content>
+
+            <Modal.Body>
+              <Text style={styles.modalHeader}>Confirm</Text>
+              <Text>Write your email synced with calender.</Text>
+              <View style={styles.editCategoryModalContainer}>
+                <TextInput placeholder="Email" style={{marginLeft:10,flex:1}}/>
+            </View>
+            <View style={styles.modalConfirmationOptionsContainer}>
+                <TouchableOpacity onPress={() => setSyncVisible(false)}>
+                  <Text style={{ fontSize: 14, fontWeight: 600, color: "#3584EF" }}>Done</Text>
+                </TouchableOpacity>
+              </View>
+            </Modal.Body>
+          </Modal.Content>
+        </Modal>
+
+
+        <Modal isOpen={overlapAlertVisible} onClose={() =>setOverlapAlertVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>
+          <Modal.Content>
+
+            <Modal.Body>
+              <Text style={styles.modalHeader}>Overlap alert</Text>
+              <Text>Your newly added calender is overlapping your task, are you sure want to confirm it?</Text>
+            <View style={styles.modalConfirmationOptionsContainer}>
+                <TouchableOpacity onPress={() => setOverlapAlertVisible(false)} style={{paddingHorizontal:15}}>
+                <Text style={{ fontSize: 14, fontWeight: 600, color: "#3584EF" }}>Delete</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>{setOverlapErrorVisible(true),setOverlapAlertVisible(false)}}>
+            <Text style={{ fontSize: 14, fontWeight: 600, color: "#3584EF" }}>Confirm Overlap</Text>
+            </TouchableOpacity>
+              </View>
+            </Modal.Body>
+          </Modal.Content>
+        </Modal>
+
+
+
+
+        <Modal isOpen={overlapErrorVisible} onClose={() => setOverlapErrorVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>
+          <Modal.Content>
+
+            <Modal.Body>
+              <Text style={styles.modalHeader}>Overlap error</Text>
+              <Text>This schedule error is overlapping with excising task</Text>
+              <View style={styles.overlapErrorContainer}>
+                <View style={{flexDirection:"row",alignItems:"center",marginTop:10}}>
+                  <View style={{flexDirection:"row",flex:0.99,alignItems:"center"}}>
+                <AntDesign name="clockcircleo" size={14} color="#808080" style={{paddingRight:5}}/>
+                <Text>Select available time</Text>
+                </View>
+                <View style={{width:65,height:32,borderRadius:20,backgroundColor:"#E8F1FD",alignItems:"center",justifyContent:"center"}}>
+                  <Text>01:00</Text>
+                </View>
+                </View>  
+            </View>
+            <View style={styles.modalConfirmationOptionsContainer}>
+                <TouchableOpacity onPress={() => setOverlapErrorVisible(false)} style={{paddingHorizontal:15}}>
+                <Text style={{ fontSize: 14, fontWeight: 600, color: "#3584EF" }}>Delete</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>{setOverlapErrorVisible(false),setAutoScheduleVisible(true)}}>
+            <Text style={{ fontSize: 14, fontWeight: 600, color: "#3584EF" }}>Confirm Overlap</Text>
+            </TouchableOpacity>
+              </View>
+            </Modal.Body>
+          </Modal.Content>
+        </Modal>
+
+
+
+        <Modal isOpen={autoScheduleVisible} onClose={() => setAutoScheduleVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>
+          <Modal.Content>
+
+            <Modal.Body>
+              <Text style={styles.modalHeader}>Auto schedule</Text>
+              <Text>Sechdule this event with auto-sechdule feature.</Text>
+              <View style={styles.modalConfirmationOptionsContainer}>
+                <TouchableOpacity onPress={() => setAutoScheduleVisible(false)} style={{paddingHorizontal:15}}>
+                <Text style={{ fontSize: 14, fontWeight: 600, color: "#3584EF" }}>Deny</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=>setAutoScheduleVisible(false)}>
+            <Text style={{ fontSize: 14, fontWeight: 600, color: "#3584EF" }}>Confirm</Text>
+            </TouchableOpacity>
+              </View>
+            </Modal.Body>
+          </Modal.Content>
+        </Modal>
+
       </SafeAreaView>
     </NativeBaseProvider>
   );
 }
 
+const styles=StyleSheet.create({
+ 
+
+    modalHeader:{
+      paddingBottom:"10%",
+      fontSize:16,
+      fontWeight:600
+    },
+    modalConfirmationOptionsContainer:{
+      alignSelf:"flex-end",
+      paddingTop:20,
+      flexDirection:"row"
+    },
+    editCategoryModalContainer:{
+      flex:1,
+      flexDirection:"row",
+      height:44,
+      alignItems:"center",
+      backgroundColor:"#F5F5F5",
+      borderRadius:10,
+      marginTop:20
+    },
+    overlapErrorContainer:{
+      flexDirection:"row",
+      alignItems:"center",
+      justifyContent:"center"
+    }
+})

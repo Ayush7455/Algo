@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 const CalendarScreenStyles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 50,
       backgroundColor: 'white',
     },
     eventContainer1: {
@@ -17,7 +16,7 @@ const CalendarScreenStyles = StyleSheet.create({
       right: 0,
       bottom: 0,
       left: 0,
-      top: '30%',
+      top: '20%',
       alignItems: 'center',
       backgroundColor: 'white',
     },
@@ -43,13 +42,13 @@ const CalendarScreenStyles = StyleSheet.create({
       marginBottom: 5,
     },
     workingHoursContainer:{
-      flex:0.5,
+      flex:0.6,
       backgroundColor:"red",
       paddingBottom:"5%",
       margin:9,
       backgroundColor:"#E96D711A",
       borderRadius:10,
-      marginBottom:"6%"
+      marginBottom:"15%"
     },
     workingHoursTitle:{ 
       fontSize: 16, 
@@ -99,7 +98,7 @@ const CalendarScreenStyles = StyleSheet.create({
       padding: 5,
       flexDirection: 'row',
       flex: 1,
-      backgroundColor: '#d9dbda',
+      backgroundColor: '#F5F5F5',
       borderRadius: 5,
       alignItems: 'center',
     },
@@ -110,7 +109,7 @@ const CalendarScreenStyles = StyleSheet.create({
     addCategoryButton:{
        width: 108, 
        height: 32, 
-       backgroundColor: '#d9dbda', 
+       backgroundColor: '#F5F5F5', 
        flexDirection: 'row', 
        alignItems: 'center', 
        justifyContent: 'center', 
@@ -121,7 +120,7 @@ const CalendarScreenStyles = StyleSheet.create({
       dueDateContainer:{ 
         width: 108, 
         height: 32, 
-        backgroundColor: '#d9dbda', 
+        backgroundColor: '#F5F5F5', 
         flexDirection: 'row', 
         alignItems: 'center',
         justifyContent: 'center', 

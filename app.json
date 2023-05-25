@@ -2,7 +2,9 @@
   "expo": {
     "name": "Ojinn",
     "slug": "Ojinn",
-    "plugins": ["@react-native-google-signin/google-signin"],
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ayush.Ojinn"
     },
     "android": {
       "googleServicesFile": "./google-services.json",

@@ -93,7 +93,7 @@ const To_Dos = () => {
     <NativeBaseProvider>
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
         <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
-        <ScrollView>
+        <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}>
           <View style={To_DosScreenStyles.topContainer}>
             <View style={To_DosScreenStyles.welcomeContainer}>
               <Text style={To_DosScreenStyles.userNameText}>Hello {user.displayName} ,
@@ -204,8 +204,8 @@ const To_Dos = () => {
               <Menu w="175" trigger={triggerProps => {
                 return (
                   searchSelected ? null :
-                    <Pressable accessibilityLabel="More options menu" {...triggerProps}>
-                      <Entypo name="dots-three-vertical" size={16} color="#787777" style={{ marginTop: 15 }} />
+                    <Pressable accessibilityLabel="More options menu" {...triggerProps} style={{marginLeft:10}}>
+                      <Entypo name="dots-three-vertical" size={20} color="#787777" style={{ marginTop: 15 }} />
                     </Pressable>
 
                 )
@@ -221,7 +221,7 @@ const To_Dos = () => {
               onPress={handleExpandPress1}
             >
               <Text style={To_DosScreenStyles.collapsableContainerText}>Todays Tasks</Text>
-              <AntDesign name={isExpanded1 ? "up" : "down"} size={18} color="#808080" />
+              <AntDesign name={isExpanded1 ? "up" : "down"} size={14} color="#808080" style={{marginTop:11}}/>
             </TouchableOpacity>
             <Animated.View
               style={[
@@ -235,6 +235,7 @@ const To_Dos = () => {
               ]}
             >
               <SwipeListView
+              nestedScrollEnabled={true}
                 data={TodayTodos}
                 renderItem={renderTodoItem}
                 keyExtractor={(item) => item.id}
@@ -249,7 +250,7 @@ const To_Dos = () => {
               onPress={handleExpandPress2}
             >
               <Text style={To_DosScreenStyles.collapsableContainerText}>Upcoming Tasks</Text>
-              <AntDesign name={isExpanded2 ? "up" : "down"} size={18} color="#808080" />
+              <AntDesign name={isExpanded2 ? "up" : "down"} size={14} color="#808080"  style={{marginTop:11}}/>
             </TouchableOpacity>
             <Animated.View
               style={[
@@ -257,12 +258,13 @@ const To_Dos = () => {
                 {
                   height: upcomingTasksExpandAnimation.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [0, isExpanded2 ? height * 0.35 : 0],
+                    outputRange: [0, isExpanded2 ? height * 0.4 : 0],
                   }),
                 },
-              ]}
+              ,{paddingBottom:20}]}
             >
               <SwipeListView
+              nestedScrollEnabled={true}
                 data={UpcomingTodos}
                 renderItem={renderTodoItem}
                 keyExtractor={(item) => item.id}
@@ -274,7 +276,7 @@ const To_Dos = () => {
 
             </Animated.View>
           </View>
-        </ScrollView>
+          </ScrollView>
 
         <TouchableOpacity style={To_DosScreenStyles.addTaskButton}>
           <AntDesign name="plus" size={24} color="white" />

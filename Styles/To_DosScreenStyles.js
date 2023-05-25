@@ -111,9 +111,8 @@ const To_DosScreenStyles = StyleSheet.create({
     tasksCollapsableContainer:{
       flexDirection: "row", 
       alignItems: "center", 
-      justifyContent: "center", 
-      alignSelf: "flex-start", 
-      marginTop: 10
+      marginTop: 10,
+      paddingBottom:10
     },
     collapsableContainerText:{
       fontSize: 16, 

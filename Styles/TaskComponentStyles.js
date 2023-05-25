@@ -8,10 +8,10 @@ const TaskComponentStyles = StyleSheet.create({
       paddingHorizontal: 10,
       paddingVertical: 15,
       marginVertical: 10,
+      backgroundColor:"white"
     },
     colorBar: {
       position: "absolute",
-      backgroundColor: "#0396FF",
       top: 0,
       bottom: 0,
       left: 0,
