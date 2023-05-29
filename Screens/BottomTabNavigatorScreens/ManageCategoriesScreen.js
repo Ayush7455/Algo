@@ -7,8 +7,10 @@ import Categories from "../../Categories";
 import Task from "../../Components/Task"
 import { SwipeListView } from "react-native-swipe-list-view";
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 const width = Dimensions.get("window").width
 const ManageCategoriesScreen=()=>{
+    const navigation=useNavigation()
     const[chooseColor,setChooseColor]=useState(false)
     const [confirmVisible,setConfirmVisible]=useState(false)
     const [createCategoryVisible,setCreateCategoryVisible]=useState(false)
@@ -36,7 +38,7 @@ const ManageCategoriesScreen=()=>{
         <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
         <View style={styles.header}>
           <View style={styles.headerContainer}>
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity style={styles.backButton} onPress={()=>navigation.goBack()}>
             <Ionicons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>Manage Categories</Text>

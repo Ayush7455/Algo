@@ -1,7 +1,7 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef,useEffect } from "react";
 import {
   SafeAreaView, StatusBar, Text, View, Dimensions, ScrollView, Image, StyleSheet, TouchableOpacity,
-  Animated, TextInput
+  Animated, TextInput,Keyboard
 } from "react-native";
 import { Modal, NativeBaseProvider, Menu, Pressable, Radio } from "native-base"
 import { SwipeListView } from "react-native-swipe-list-view";
@@ -14,12 +14,42 @@ import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import To_DosScreenStyles from "../../Styles/To_DosScreenStyles";
+import Date from '../../assets/Images/Date.png';
+import Categories from '../../assets/Images/Categories.png';
 const images = [
   require("../../assets/Images/TaskManagement.png"),
   require("../../assets/Images/FocusMode.png"),
   require("../../assets/Images/MultiDeviceSupport.png"),
 ];
 const width = Dimensions.get("window").width
+
+const useKeyboard=()=>{
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+ 
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true);
+      },
+    );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false);
+      },
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
+  return isKeyboardVisible;
+}
 
 const To_Dos = () => {
   const navigation = useNavigation()
@@ -38,7 +68,10 @@ const To_Dos = () => {
   const finalRef = useRef(null);
   const [confirmVisible, setConfirmVisible] = useState(false)
   const [sortVisible, setSortVisible] = useState(false)
-
+  const [category,setCategory]=useState("Personal")
+  const [addTaskVisible,setAddTaskVisible]=useState(false)
+  const isKeyboardOpen = useKeyboard();
+  const [title,setTitle]=useState("");
 
   const onChange = (nativeEvent) => {
     if (nativeEvent) {
@@ -240,7 +273,7 @@ const To_Dos = () => {
                 renderItem={renderTodoItem}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
-                rightOpenValue={-110}
+                rightOpenValue={-112}
                 disableRightSwipe
                 renderHiddenItem={renderHiddenItem}
               />
@@ -269,7 +302,7 @@ const To_Dos = () => {
                 renderItem={renderTodoItem}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
-                rightOpenValue={-110}
+                rightOpenValue={-112}
                 disableRightSwipe
                 renderHiddenItem={renderHiddenItem}
               />
@@ -278,7 +311,7 @@ const To_Dos = () => {
           </View>
           </ScrollView>
 
-        <TouchableOpacity style={To_DosScreenStyles.addTaskButton}>
+        <TouchableOpacity style={To_DosScreenStyles.addTaskButton} onPress={()=>setAddTaskVisible(true)}>
           <AntDesign name="plus" size={24} color="white" />
         </TouchableOpacity>
 
@@ -329,6 +362,47 @@ const To_Dos = () => {
             </Modal.Body>
           </Modal.Content>
         </Modal>
+
+        <Modal isOpen={addTaskVisible} onClose={() => setAddTaskVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef} style={{justifyContent:isKeyboardOpen?"center":"flex-end"}}>
+          <Modal.Content style={{ width: '100%' }}>
+            <Modal.Body>
+              <Text style={To_DosScreenStyles.modalTitle}>New task</Text>
+              <View style={To_DosScreenStyles.modalContainer}>
+                <View style={To_DosScreenStyles.modalTextInputContainer}>
+                  <TextInput style={{ fontSize: 15, flex: 1 }} onChangeText={(text) => setTitle(text)}value={title} placeholder="Title"/>
+                </View>
+              </View>
+              <View style={To_DosScreenStyles.menuContainer}>
+              <Menu w="160" trigger={triggerProps => {
+      return <Pressable accessibilityLabel="More options menu" {...triggerProps}>
+              <View style={To_DosScreenStyles.addCategoryButton}>
+                  <Image source={Categories} style={{ height: 17, width: 17 }} resizeMode="contain" />
+                  <Text style={{ color: '#808080', paddingHorizontal: 3 }}>{category}</Text>
+                </View>
+            </Pressable>;
+    }}>
+        <Menu.Item onPress={()=>setCategory("New")}><AntDesign name="plus" size={20} color="#3584EF" /><Text style={{color:"#3584EF"}}>Create New</Text></Menu.Item>
+        <Menu.Item onPress={()=>setCategory("Personal")}>Personal</Menu.Item>
+        <Menu.Item onPress={()=>setCategory("Design")}>Design</Menu.Item>
+        <Menu.Item onPress={()=>setCategory("Work")}>Work</Menu.Item>
+        <Menu.Item onPress={()=>setCategory("Manage Categories")}>Birthday</Menu.Item>
+      </Menu>
+                <TouchableOpacity style={To_DosScreenStyles.dueDateContainer}>
+                  <Image source={Date} style={{ height: 19, width: 19 }} resizeMode="contain" />
+                  <Text style={{ color: '#808080', paddingHorizontal: 3 }}>Due Date</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity  style={To_DosScreenStyles.doneButton} onPress={()=>setAddTaskVisible(false)}>
+                <Text style={{ color: 'white' }}>Done</Text>
+              </TouchableOpacity>
+            </Modal.Body>
+          </Modal.Content>
+
+        </Modal>
+
+
+
+
 
       </SafeAreaView>
     </NativeBaseProvider>

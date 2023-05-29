@@ -7,6 +7,8 @@ import WhitelistContactsScreen from "../Screens/BottomTabNavigatorScreens/Whitel
 import AddContactsScreen from "../Screens/BottomTabNavigatorScreens/AddContactsScreen";
 import AddDevicesScreen from "../Screens/BottomTabNavigatorScreens/AddDevicesScreen";
 import ManageCategoriesScreen from "../Screens/BottomTabNavigatorScreens/ManageCategoriesScreen";
+import TaskDetailsScreen from "../Screens/BottomTabNavigatorScreens/TaskDetailsScreen";
+import NotesScreen from "../Screens/BottomTabNavigatorScreens/NotesScreen";
 
 const Stack=createNativeStackNavigator()
 
@@ -20,6 +22,8 @@ const AppStack=()=>{
     <Stack.Screen name="AddContactsScreen" component={AddContactsScreen} />
     <Stack.Screen name="AddDevicesScreen" component={AddDevicesScreen} />
     <Stack.Screen name="ManageCategoriesScreen" component={ManageCategoriesScreen} />
+    <Stack.Screen name="TaskDetailsScreen" component={TaskDetailsScreen} />
+    <Stack.Screen name="NotesScreen" component={NotesScreen} />
         </Stack.Navigator>
     )
 }

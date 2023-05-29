@@ -1,12 +1,14 @@
 import React from "react";
-import { Text, View, Dimensions, StyleSheet } from "react-native";
+import { Text, View, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
 const width = Dimensions.get("window").width;
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 const Todo = ({ todo }) => {
+  const navigation=useNavigation()
   return (
-    <View style={styles.container}>
+    <TouchableOpacity activeOpacity={1} onPress={()=>navigation.navigate("TaskDetailsScreen")}style={styles.container}>
       <View style={[styles.iconContainer, { backgroundColor: todo.color }]}>
         <Feather name="gift" size={24} color="white" />
       </View>
@@ -27,7 +29,7 @@ const Todo = ({ todo }) => {
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

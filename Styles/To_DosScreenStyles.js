@@ -129,6 +129,57 @@ const To_DosScreenStyles = StyleSheet.create({
       flexDirection:"row",
       alignSelf:"flex-end",
       paddingTop:20
-    }
+    },
+    modalTitle:{ 
+      paddingBottom: '10%', 
+      fontSize: 16, 
+      fontWeight: 600 
+    },
+    modalContainer:{ 
+      flexDirection: 'row', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      paddingVertical: 10 
+    },
+    modalTextInputContainer:{
+      padding: 5,
+      flexDirection: 'row',
+      flex: 1,
+      backgroundColor: '#F5F5F5',
+      borderRadius: 5,
+      alignItems: 'center',
+    },
+    menuContainer:{ 
+      flexDirection: 'row', 
+      paddingVertical: 15 
+    },
+    addCategoryButton:{
+       width: 108, 
+       height: 32, 
+       backgroundColor: '#F5F5F5', 
+       flexDirection: 'row', 
+       alignItems: 'center', 
+       justifyContent: 'center', 
+       marginRight: 10, 
+       borderRadius: 20,
+       height:40 
+      },
+      dueDateContainer:{ 
+        width: 108, 
+        height: 32, 
+        backgroundColor: '#F5F5F5', 
+        flexDirection: 'row', 
+        alignItems: 'center',
+        justifyContent: 'center', 
+        borderRadius: 20,
+        height:40 
+      },
+      doneButton:{ 
+        padding: 8, 
+        borderRadius: 5, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        backgroundColor: '#3584EF' 
+      }
   });
   export default To_DosScreenStyles
