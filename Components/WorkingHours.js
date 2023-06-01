@@ -33,7 +33,7 @@ const WorkingHours = ({ Hour }) => {
         position: "absolute",
         top: 0,
         bottom: 0,
-        left:screenWidth * 0.14,
+        left:50,
         width: "1.5%",
       },
       taskText: {

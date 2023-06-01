@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState ,useRef} from "react";
-import {Text,View,SafeAreaView,StatusBar,StyleSheet,TouchableOpacity, TextInput, Image} from "react-native"
+import {Text,View,SafeAreaView,StatusBar,StyleSheet,TouchableOpacity, TextInput, Image,KeyboardAvoidingView, Platform } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 import Calendar from "../../assets/Images/Calendar.png"
 import Alert from "../../assets/Images/Alert.png"
@@ -9,7 +9,7 @@ import Note from "../../assets/Images/Note.png"
 import Glance from "../../assets/Images/Glance.png"
 import Clock from "../../assets/Images/Clock.png"
 import CalendarCheckmark from "../../assets/Images/CalendarCheckmark.png"
-import { NativeBaseProvider,Modal,Menu,Pressable,Switch} from "native-base";
+import { NativeBaseProvider,Modal,Menu,Pressable,Switch, ScrollView} from "native-base";
 import { AntDesign } from '@expo/vector-icons';
 const TaskDetailsScreen=()=>{
     const initialRef = useRef(null);
@@ -40,8 +40,13 @@ const TaskDetailsScreen=()=>{
             <Text style={styles.headerTitle}>Task Details</Text>
           </View>
         </View>
-
-        <View style={{flex:0.3}}>
+        <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0} // Adjust this value if needed
+    >
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={{flex:0.3,marginTop:20}}>
         <View style={{height:50,backgroundColor:"#F5F5F5",margin:15,justifyContent:"center",padding:10,borderRadius:10}}>
             <Text style={{fontSize:14,fontWeight:500}}>Design Ojinn flow for UI</Text>
         </View>
@@ -51,7 +56,6 @@ const TaskDetailsScreen=()=>{
             <TextInput placeholder="Task Description" multiline={true} style={{flex:1}} placeholderTextColor={"#808080"}/>
         </View>
         </View>
-
         <View style={{flex:0.7,margin:15}}>
             <Text style={{fontSize:16,fontWeight:600,paddingBottom:10}}>Other Details</Text>
 
@@ -141,8 +145,8 @@ const TaskDetailsScreen=()=>{
             </TouchableOpacity>
             </View>
             </View>
-
-
+            </ScrollView>
+            </KeyboardAvoidingView>
             <Modal isOpen={repeatTaskVisible} onClose={() =>setRepeatTaskVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>
           <Modal.Content>
 

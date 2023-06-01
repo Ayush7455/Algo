@@ -14,6 +14,7 @@ const OnBoardingScreenItemComponentStyles=StyleSheet.create({
     },
     title:{
        textAlign:"center",
+       paddingTop:20,
        fontWeight:600,
        fontSize:18
     },

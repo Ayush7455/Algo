@@ -26,7 +26,7 @@ const OnBoardingScreenStyles=StyleSheet.create({
     },
     continueBtn:{
         height:40,
-        width:320,
+        width:"90%",
         backgroundColor:"#3584EF",
         borderRadius:10,
         alignItems:"center",

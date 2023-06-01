@@ -72,7 +72,16 @@ const To_Dos = () => {
   const [addTaskVisible,setAddTaskVisible]=useState(false)
   const isKeyboardOpen = useKeyboard();
   const [title,setTitle]=useState("");
-
+  const [selectedItems, setSelectedItems] = useState([]);
+  const handleSelectItem = (itemId) => {
+    setSelectedItems((prevSelectedItems) => {
+      if (prevSelectedItems.includes(itemId)) {
+        return prevSelectedItems.filter((id) => id !== itemId);
+      } else {
+        return [...prevSelectedItems, itemId];
+      }
+    });
+  };
   const onChange = (nativeEvent) => {
     if (nativeEvent) {
       const slide = Math.ceil(
@@ -105,18 +114,17 @@ const To_Dos = () => {
       useNativeDriver: false,
     }).start();
   };
-
   const renderTodoItem = ({ item }) => (
-    <Todo todo={item} />
+    <Todo todo={item} isSelected={selectedItems.includes(item.id)} onPress={() => handleSelectItem(item.id)} />
   );
 
-  const renderHiddenItem = () => (
+  const renderHiddenItem = ({onSelect}) => (
     <View style={[To_DosScreenStyles.rowBack, { width: width * 0.89, }]}>
-      <TouchableOpacity style={To_DosScreenStyles.selectButton}>
-        <AntDesign name="checkcircleo" size={24} color="white" />
+      <TouchableOpacity onPress={onSelect} style={To_DosScreenStyles.selectButton}>
+        <AntDesign name="checkcircleo" size={18} color="white" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setConfirmVisible(true)} style={[To_DosScreenStyles.backRightBtn, To_DosScreenStyles.backRightBtnRight]}>
-        <AntDesign name="delete" size={24} color="white" />
+        <AntDesign name="delete" size={18} color="white" />
       </TouchableOpacity>
     </View>
   );
@@ -234,7 +242,7 @@ const To_Dos = () => {
                 </ScrollView>
               }
 
-              <Menu w="175" trigger={triggerProps => {
+              <Menu w="175" mr="5" trigger={triggerProps => {
                 return (
                   searchSelected ? null :
                     <Pressable accessibilityLabel="More options menu" {...triggerProps} style={{marginLeft:10}}>
@@ -262,7 +270,7 @@ const To_Dos = () => {
                 {
                   height: todaysTasksExpandAnimation.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [0, isExpanded1 ? height * 0.35 : 0],
+                    outputRange: [0, isExpanded1 ? height * 0.37 : 0],
                   }),
                 },
               ]}
@@ -275,7 +283,7 @@ const To_Dos = () => {
                 showsVerticalScrollIndicator={false}
                 rightOpenValue={-112}
                 disableRightSwipe
-                renderHiddenItem={renderHiddenItem}
+                renderHiddenItem={({ item }) => renderHiddenItem({ onSelect: () => handleSelectItem(item.id) })}
               />
             </Animated.View>
             <TouchableOpacity
@@ -291,7 +299,7 @@ const To_Dos = () => {
                 {
                   height: upcomingTasksExpandAnimation.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [0, isExpanded2 ? height * 0.4 : 0],
+                    outputRange: [0, isExpanded2 ? height * 0.37 : 0],
                   }),
                 },
               ,{paddingBottom:20}]}
@@ -304,7 +312,7 @@ const To_Dos = () => {
                 showsVerticalScrollIndicator={false}
                 rightOpenValue={-112}
                 disableRightSwipe
-                renderHiddenItem={renderHiddenItem}
+                renderHiddenItem={({ item }) => renderHiddenItem({ onSelect: () => handleSelectItem(item.id) })}
               />
 
             </Animated.View>
@@ -364,7 +372,7 @@ const To_Dos = () => {
         </Modal>
 
         <Modal isOpen={addTaskVisible} onClose={() => setAddTaskVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef} style={{justifyContent:isKeyboardOpen?"center":"flex-end"}}>
-          <Modal.Content style={{ width: '100%' }}>
+          <Modal.Content style={{ width:"100%" }}>
             <Modal.Body>
               <Text style={To_DosScreenStyles.modalTitle}>New task</Text>
               <View style={To_DosScreenStyles.modalContainer}>
@@ -373,7 +381,7 @@ const To_Dos = () => {
                 </View>
               </View>
               <View style={To_DosScreenStyles.menuContainer}>
-              <Menu w="160" trigger={triggerProps => {
+              <Menu w="160"  trigger={triggerProps => {
       return <Pressable accessibilityLabel="More options menu" {...triggerProps}>
               <View style={To_DosScreenStyles.addCategoryButton}>
                   <Image source={Categories} style={{ height: 17, width: 17 }} resizeMode="contain" />
@@ -399,9 +407,6 @@ const To_Dos = () => {
           </Modal.Content>
 
         </Modal>
-
-
-
 
 
       </SafeAreaView>

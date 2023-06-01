@@ -1,4 +1,4 @@
-import React,{useContext} from "react"
+import React,{useContext,useEffect} from "react"
 import { SafeAreaView, StatusBar, Text, View,Image } from "react-native"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from "./BottomTabNavigatorScreens/Profile";
@@ -7,7 +7,12 @@ import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import CalendarScreen from "./BottomTabNavigatorScreens/CalendarScreen";
 import { AuthContext } from "../navigation/AuthProvider"
+
+
+
+
 const HomeScreen = () => {
+
   const {user}=useContext(AuthContext)
   const Tab = createBottomTabNavigator();
   const CustomTabLabel = ({ label, focused }) => (
@@ -28,6 +33,7 @@ const HomeScreen = () => {
               focused={focused}
             />
           )
+        
 
         })}
       >

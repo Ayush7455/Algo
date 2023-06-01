@@ -22,7 +22,6 @@ const Profile=()=>{
     const initialRef = useRef(null);
     const finalRef = useRef(null);
     const [switchOn, setSwitchOn] = useState(false);
-  console.log(user)
   const handleToggleSwitch = (value) => {
     if (value) {
       setVisible(true);
@@ -72,7 +71,7 @@ const Profile=()=>{
                     <Text style={ProfileScreenStyles.focusItemText}>Archive Tasks</Text>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={ProfileScreenStyles.focusItem}>
+                <TouchableOpacity style={ProfileScreenStyles.focusItem} onPress={()=>navigation.navigate("AddDevicesScreen")}>
                     <Image source={ConnectDevices} style={ProfileScreenStyles.focusItemImage}/>
                     <Text style={ProfileScreenStyles.focusItemText}>Connect Devices</Text>
 
@@ -88,7 +87,7 @@ const Profile=()=>{
 
                 </TouchableOpacity>
                 <View style={{flex:0.3,paddingTop:72}}>
-                    <Image source={OjinnProfileImage} style={{height:"100%",width:"100%"}}resizeMode="cover"/>
+                    <Image source={OjinnProfileImage} style={{height:"100%",width:"100%"}}resizeMode="stretch"/>
                     </View>
 
                     <Modal isOpen={visible} onClose={() => setVisible(false)} initialFocusRef={initialRef} finalFocusRef={finalRef}>

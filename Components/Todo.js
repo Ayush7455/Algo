@@ -1,14 +1,15 @@
 import React from "react";
-import { Text, View, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
-const width = Dimensions.get("window").width;
+import { Text, View, Dimensions, StyleSheet, TouchableOpacity,Image } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
-
-const Todo = ({ todo }) => {
+import Selected from "../assets/Images/Selected.png"
+const width = Dimensions.get("window").width;
+const Todo = ({ todo,isSelected }) => {
   const navigation=useNavigation()
   return (
-    <TouchableOpacity activeOpacity={1} onPress={()=>navigation.navigate("TaskDetailsScreen")}style={styles.container}>
+    <TouchableOpacity activeOpacity={1} onPress={()=>navigation.navigate("TaskDetailsScreen")}style={isSelected?styles.container2:styles.container1}>
+      <View style={isSelected?styles.selectedItem:styles.notSelectedItem}>
       <View style={[styles.iconContainer, { backgroundColor: todo.color }]}>
         <Feather name="gift" size={24} color="white" />
       </View>
@@ -29,12 +30,14 @@ const Todo = ({ todo }) => {
           )}
         </View>
       </View>
+      </View>
+      {isSelected&&<Image source={Selected} style={{height:25,width:25,marginLeft:10}}/>}
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container1: {
     borderWidth: 1,
     borderColor: "#F5F5F5",
     height: 70,
@@ -46,6 +49,22 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     backgroundColor: "white",
+  },
+  container2: {
+    height: 70,
+    marginVertical: 10,
+    flexDirection: "row",
+    width: width * 0.9,
+    alignSelf: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  selectedItem:{
+    flexDirection:"row",alignItems:"center",borderWidth:1,borderColor:"#F5F5F5",borderRadius:10,height:70,flex:1,padding:15
+  },
+  notSelectedItem:{
+    
+      flexDirection:"row",alignItems:"center"
   },
   iconContainer: {
     height: 40,

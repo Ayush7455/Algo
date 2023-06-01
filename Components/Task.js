@@ -6,8 +6,7 @@ const screenWidth = Dimensions.get("window").width;
 
 const Task = ({ task }) => {
   return (
-    <View style={[TaskComponentStyles.container,{ marginLeft: screenWidth * 0.05,
-      marginRight: screenWidth * 0.05,
+    <View style={[TaskComponentStyles.container,{ marginHorizontal: screenWidth * 0.05,
       width: screenWidth * 0.9,}]}>
       <View style={[TaskComponentStyles.colorBar,{backgroundColor:task.color?task.color:"#0396FF"}]} />
       {task.task&&<Text style={TaskComponentStyles.taskText}>{task.task}</Text>}

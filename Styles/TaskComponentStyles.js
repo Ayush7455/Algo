@@ -17,7 +17,7 @@ const TaskComponentStyles = StyleSheet.create({
       left: 0,
       borderTopLeftRadius:15,
       borderBottomLeftRadius:15,
-      width: "4%",
+      width: "3%",
     },
     taskText: {
       fontWeight: "500",

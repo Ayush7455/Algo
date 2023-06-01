@@ -14,12 +14,12 @@ const AuthStack = () => {
   useEffect(() => {
     AsyncStorage.getItem('alreadyLaunched').then((value) => {
       if (value == null) {
-        AsyncStorage.setItem('alreadyLaunched', 'true'); // No need to wait for `setItem` to finish, although you might want to handle errors
+        AsyncStorage.setItem('alreadyLaunched', 'true');
         setIsFirstLaunch(true);
       } else {
         setIsFirstLaunch(false);
       }
-    }); // Add some error handling, also you can simply do setIsFirstLaunch(null)
+    }); 
   
     GoogleSignin.configure({
       webClientId: "998958224305-h17qbkeouvm0po5uoocofnsita4kfbuq.apps.googleusercontent.com",
@@ -31,7 +31,7 @@ const AuthStack = () => {
   if (isFirstLaunch === null) {
     return null
   } else if (isFirstLaunch == true) {
-    routeName = 'Onboarding';
+    routeName = 'OnboardingScreen';
   } else {
     routeName = 'LoginScreen';
   }

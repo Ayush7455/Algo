@@ -7,7 +7,7 @@ const CalendarScreenStyles = StyleSheet.create({
     eventContainer1: {
       marginTop: 20,
       alignItems: 'center',
-      paddingBottom: '83%',
+      paddingBottom: 350,
       alignItems:"center",
     },
     eventContainer2: {
@@ -16,7 +16,7 @@ const CalendarScreenStyles = StyleSheet.create({
       right: 0,
       bottom: 0,
       left: 0,
-      top: '20%',
+      top:200,
       alignItems: 'center',
       backgroundColor: 'white',
     },
@@ -42,13 +42,13 @@ const CalendarScreenStyles = StyleSheet.create({
       marginBottom: 5,
     },
     workingHoursContainer:{
-      flex:0.6,
+      flex:0.8,
       backgroundColor:"red",
       paddingBottom:"5%",
-      margin:9,
+      marginBottom:"15%",
+      margin:"2%",
       backgroundColor:"#E96D711A",
       borderRadius:10,
-      marginBottom:"15%"
     },
     workingHoursTitle:{ 
       fontSize: 16, 

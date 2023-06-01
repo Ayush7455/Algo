@@ -11,9 +11,9 @@ const LoginScreen=()=>{
 
         <SafeAreaView style={{flex:1,backgroundColor:"white"}}>
             <StatusBar barStyle={"dark-content"} backgroundColor={"white"}/>
-           <View style={{flex:0.8}}>
+           <View style={{flex:0.8,paddingHorizontal:20}}>
         <Text  style={LoginScreenStyles.title}>Welcome to Ojinn,{'\n'}your smart task manager!</Text>
-        <Image source={TaskManagement} style={LoginScreenStyles.image}></Image>
+        <Image source={TaskManagement} style={LoginScreenStyles.image} resizeMode="contain"></Image>
             </View>
             <View style={LoginScreenStyles.bottomContainer}>
                 <TouchableOpacity onPress={()=>googleLogin()} style={LoginScreenStyles.subBottomContainer}>

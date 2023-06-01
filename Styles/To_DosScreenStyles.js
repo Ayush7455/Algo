@@ -2,11 +2,13 @@ import { StyleSheet } from "react-native";
 const To_DosScreenStyles = StyleSheet.create({
     topContainer:{
       marginHorizontal: 20, 
+      marginTop:10,
       alignItems: "center"
     },
     welcomeContainer:{
       alignSelf: "flex-start", 
-      paddingVertical: 15
+      paddingTop: 20,
+      paddingBottom:50
     },
     userNameText:{
       color: "#E2B0FF", 
@@ -70,8 +72,8 @@ const To_DosScreenStyles = StyleSheet.create({
     rowBack: {
       height: 40,
       marginVertical: 12,
-      alignItems: "center",
-      justifyContent: "center",
+      flexDirection:"row",
+      alignSelf:"center",
       flex:1,
       borderRadius:10,
       backgroundColor:"#F5F5F5"

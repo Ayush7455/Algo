@@ -24,10 +24,10 @@ const ManageCategoriesScreen=()=>{
       const renderHiddenItem = () => (
         <View style={styles.rowBack}>
           <TouchableOpacity style={styles.selectButton} onPress={()=>setCategoryEditVisible(true)}>
-          <Feather name="edit-2" size={24} color="white" />
+          <Feather name="edit-2" size={18} color="white" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setConfirmVisible(true)} style={[styles.backRightBtn, styles.backRightBtnRight]}>
-            <AntDesign name="delete" size={24} color="white" />
+            <AntDesign name="delete" size={18} color="white" />
           </TouchableOpacity>
         </View>
       );
@@ -53,7 +53,7 @@ const ManageCategoriesScreen=()=>{
                 renderItem={renderCategoryItem}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
-                rightOpenValue={-110}
+                rightOpenValue={-102}
                 disableRightSwipe
                 renderHiddenItem={renderHiddenItem}
               />
@@ -176,9 +176,7 @@ const styles=StyleSheet.create({
     rowBack: {
         height: 40,
         marginVertical: 12,
-        alignItems: "center",
         alignSelf:"center",
-        justifyContent: "center",
         flex:1,
         borderRadius: 15,
         backgroundColor:"#F5F5F5",
@@ -191,7 +189,7 @@ const styles=StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
         top: 0,
-        width: 54,
+        width: 50,
         borderTopRightRadius:10,
         borderBottomRightRadius:10
     
@@ -206,12 +204,12 @@ const styles=StyleSheet.create({
       },
       selectButton: {
         position: 'absolute',
-        right: 54,
+        right: 50,
         justifyContent: 'center',
         paddingHorizontal: 15,
         height: '100%',
         backgroundColor: '#569AFF',
-        width:54,
+        width:50,
       },
       selectButtonText: {
         color: 'white',
@@ -251,8 +249,7 @@ const styles=StyleSheet.create({
       },
       categoryColorsView:{
         flexDirection:"row",
-        justifyContent:"space-around",
-        width:width*0.6,
+        justifyContent:"space-between",
         marginTop:20
       }
 })

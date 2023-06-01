@@ -76,9 +76,9 @@ export default function App() {
       <SafeAreaView style={CalendarScreenStyles.container}>
         <StatusBar barStyle="dark-content" backgroundColor="white" />
         <View>
-        <Menu w="100" trigger={triggerProps => {
+        <Menu w="100" mr="5" trigger={triggerProps => {
                 return (
-                    <Pressable accessibilityLabel="More options menu" {...triggerProps} style={{alignSelf:"flex-end",width:40,marginBottom:10}}>
+                    <Pressable accessibilityLabel="Sync Calendar" {...triggerProps} style={{alignSelf:"flex-end",width:40,marginBottom:10}}>
                       <Entypo name="dots-three-vertical" size={18} color="#787777" style={{ marginTop: 15 }} />
                     </Pressable>
 

@@ -5,14 +5,14 @@ const LoginScreenStyles=StyleSheet.create({
         fontSize:24,
         lineHeight: 32,
         color:"#3584EF",
-        marginHorizontal:20,
-        marginTop:113
+        marginTop:113,
+        flex:0.2
     },
     image:{
-        height:325,
-        width:320,
-        marginTop:56,
-        alignSelf:"center"
+        flex:0.8,
+        height:"100%",
+        width:"100%",
+        paddingBottom:200
     },
     bottomContainer:{
         flex:0.2,
@@ -23,7 +23,7 @@ const LoginScreenStyles=StyleSheet.create({
     subBottomContainer:{
         flexDirection:"row",
         height:48,
-        width:320,
+        width:"90%",
         backgroundColor:"white",
         alignSelf:"center",
         marginTop:16,

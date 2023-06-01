@@ -21,6 +21,7 @@ const FocusScreen = () => {
   const [value, setValue] = useState("Default Mode")
   const initialRef = useRef(null);
   const finalRef = useRef(null);
+ 
   const goBack = () => {
     navigation.goBack();
   };
